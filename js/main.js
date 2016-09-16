@@ -12,6 +12,8 @@ $(document).ready(function() {
 		url = "https://api.nasa.gov/neo/rest/v1/feed?api_key="+apiKey+"&start_date="+startDate+"&end_date="+endDate
 	;
 
+	const launchAtBegin = false;
+
 
 
 
@@ -55,7 +57,7 @@ $(document).ready(function() {
 					}
 
 					// Change hour of one asteroid in order to match with current
-					if(asteroid.name === "(2016 QL44)") {
+					if(asteroid.name === "(2016 QL44)" && launchAtBegin) {
 						object.timestamp = moment().format("HH:mm");
 					}
 
@@ -88,7 +90,7 @@ $(document).ready(function() {
     function check(asteroids) {
 
     	console.log(asteroids);
-    	
+
     	for(let elem in asteroids) {
     		if(asteroids[elem].timestamp == moment().format("HH:mm")) {
     			impact(asteroids[elem]);	
