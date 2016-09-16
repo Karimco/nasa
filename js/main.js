@@ -9,41 +9,55 @@ $(document).ready(function() {
 
 	var url = "https://api.nasa.gov/neo/rest/v1/feed?api_key="+apiKey+"&start_date="+startDate+"&end_date="+endDate;
 
-	$.ajax({
-		url: url,
-		success: function(result) {
+	brucewillis(url);
 
-			console.log(result);
+	function brucewillis(url) {
 
-			for(let i in result.near_earth_objects[endDate]) {
+		$.ajax({
+			url: url,
+			success: function(result) {
 
-				let asteroid = result.near_earth_objects[endDate][i];
+				console.log(result);
 
-				console.log(asteroid);
-				console.log(asteroid.name);
+				var asteroids = [];
 
-				let hazardous = "Oui";
+				for(let i in result.near_earth_objects[endDate]) {
 
-				if(!asteroid.is_potentially_hazardous_asteroid) hazardous = "Non";
+					let asteroid = result.near_earth_objects[endDate][i];
 
-				let missDistance = asteroid.close_approach_data[0].miss_distance.kilometers;
-				let timestamp = moment(asteroid.close_approach_data[0].epoch_date_close_approach);
-				let diameter = 
-					Math.round((asteroid.estimated_diameter.meters.estimated_diameter_max + asteroid.estimated_diameter.meters.estimated_diameter_min) /2)
-				;
+					console.log(asteroid);
 
-				let element = `
-					<li>
-						<div>name : ${asteroid.name}
-						<div>hazardous : ${hazardous}</div>
-						<div>Hour Pass : ${timestamp}</div>
-						<div>Miss distance : ${missDistance} kilometers</div>
-						<div>Diameter : ${diameter} meters</div>
-					</li>
-				`;
+					let object = {
+						name: asteroid.name,
+						hazardous: "Oui",
+						missDistance: asteroid.close_approach_data[0].miss_distance.kilometers,
+						timestamp: moment(asteroid.close_approach_data[0].epoch_date_close_approach),
+						diameter: Math.round((asteroid.estimated_diameter.meters.estimated_diameter_max + asteroid.estimated_diameter.meters.estimated_diameter_min) /2)
+					}
 
-				$('ul').append(element);
+					if(!asteroid.is_potentially_hazardous_asteroid) object.hazardous = "Non";
+
+					asteroids.push(object);
+
+					let element = `
+						<li>
+							<div>name : ${object.name}
+							<div>hazardous : ${object.hazardous}</div>
+							<div>Hour Pass : ${object.timestamp}</div>
+							<div>Miss distance : ${object.missDistance} kilometers</div>
+							<div>Diameter : ${object.diameter} meters</div>
+						</li>
+					`;
+
+					functionKarimjy(asteroids);
+
+					$('ul').append(element);
+				}
 			}
-		}
-	});
+		});
+	}
+
+	function functionKarimjy(asteroids) {
+		console.log(asteroids);
+	}
 });
