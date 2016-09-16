@@ -2,8 +2,6 @@
 
 $(document).ready(function() {
 
-	let makerKey = "jBdzjx6A04qjewchH_aRTAnKz_838X8VntQ4qCPay2Z";
-
 	var apiKey = "U31QXBjycdeRrJ0gsnCQpvlaWLpvBBsb2QKCQqUL";
 
 	var startDate = "2016-09-16";//moment().format("YYYY-MM-DD");
@@ -11,7 +9,11 @@ $(document).ready(function() {
 
 	var url = "https://api.nasa.gov/neo/rest/v1/feed?api_key="+apiKey+"&start_date="+startDate+"&end_date="+endDate;
 
-	brucewillis(url);
+	// brucewillis(url);
+
+	$('.impact').on('click', () => {
+		impact();
+	});
 
     //Get les datas asteroid du jour
 	function brucewillis(url) {
@@ -52,7 +54,7 @@ $(document).ready(function() {
 						</li>
 					`;
                     
-					functionKarimjy(asteroids);
+					impact(asteroids);
 
 					$('ul').append(element);
 				}
@@ -75,16 +77,21 @@ $(document).ready(function() {
     }
 
     //LittleBit
-	function functionKarimjy(asteroids) {
-        var url = "";
-            $.ajax({
-                url: url,
-                method: 'get',
-                success: function(result) {
-                    let boolean = check(result);
-                    
-                    if(boolean){ letsgo() }
-                }
-            });
+	function impact() {
+
+		let makerKey = "jBdzjx6A04qjewchH_aRTAnKz_838X8VntQ4qCPay2Z";
+        var url = "https://maker.ifttt.com/trigger/asteroid/with/key/"+makerKey;
+        $.ajax({
+            url: url,
+            method: 'POST',
+            success: function(result) {
+
+            	console.log(result);
+
+                // let boolean = check(result);
+                
+                // if(boolean){ letsgo() }
+            }
+        });
 	}
 });
