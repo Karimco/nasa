@@ -1,4 +1,22 @@
+$red: #ff0000;
+
 body {
 	background-color: black;
-	color: #ff0000;
+	color: $red;
+	text-align: center;
+}
+
+details {
+	color: #fff;
+}
+
+ul li {
+	list-style: none;
+}
+
+h1, h2 {
+	color: $red;
+	text-align: center;
+	font-size: 5em;
+	font-family: "Lato", sans-serif;
 }
