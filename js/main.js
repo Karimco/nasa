@@ -11,18 +11,18 @@ $(document).ready(function() {
 
 	brucewillis(url);
 
-//	$('.impact').on('click', () => {
-//		impact();
-//	});
+	$('.impact').on('click', () => {
+		impact();
+	});
 
-    //Get les datas asteroid du jour
+    // Get les datas asteroid du jour
 	function brucewillis(url) {
 
 		$.ajax({
 			url: url,
 			success: function(result) {
 
-				console.log(result);
+				// console.log(result);
 
 				var asteroids = [];
 
@@ -30,14 +30,16 @@ $(document).ready(function() {
 
 					let asteroid = result.near_earth_objects[endDate][i];
 
-					console.log(asteroid);
-
 					let object = {
 						name: asteroid.name,
 						hazardous: "Oui",
 						missDistance: asteroid.close_approach_data[0].miss_distance.kilometers,
 						timestamp: moment(asteroid.close_approach_data[0].epoch_date_close_approach).format("HH:mm"),
 						diameter: Math.round((asteroid.estimated_diameter.meters.estimated_diameter_max + asteroid.estimated_diameter.meters.estimated_diameter_min) /2)
+					}
+
+					if(asteroid.name === "(2016 QL44)") {
+						object.timestamp = moment().format("HH:mm");
 					}
 
 					if(!asteroid.is_potentially_hazardous_asteroid) object.hazardous = "Non";
@@ -53,36 +55,51 @@ $(document).ready(function() {
 							<div>Diameter : ${object.diameter} meters</div>
 						</li>
 					`;
-                    
-					impact(asteroids);
 
 					$('ul').append(element);
 				}
+
+				check(asteroids);
 			}
 		});
 	}
     
-    //Check le timestamp asteroid à maintenant
-    function check(res){
-        setInterval(function(){
-                if(res[0].timestamp == moment().format("HH:mm")){
-                    impact();
-                }
+    // Check le timestamp asteroid à maintenant
+    function check(asteroids) {
+
+    	console.log(asteroids);
+
+    	for(let elem in asteroids) {
+    		if(asteroids[elem].timestamp == moment().format("HH:mm")) {
+    			impact(asteroids[elem]);	
+    		}
+    	}
+
+        setInterval(function() {
+
+        	for(let elem in asteroids) {
+        		if(asteroids[elem].timestamp == moment().format("HH:mm")) {
+        			impact(asteroids[elem]);	
+        		}
+        	}
+
         }, 1000*60);
     }
-    
 
-    //LittleBit
-	function impact() {
+    // LittleBit
+	function impact(asteroid) {
 
-		let makerKey = "jBdzjx6A04qjewchH_aRTAnKz_838X8VntQ4qCPay2Z";
-        var url = "https://maker.ifttt.com/trigger/asteroid/with/key/"+makerKey;
+		$('.showImpact').text(asteroid.name + " is passing next to us");
+
+		const makerKey = "jBdzjx6A04qjewchH_aRTAnKz_838X8VntQ4qCPay2Z",
+			url = "https://maker.ifttt.com/trigger/asteroid/with/key/"+makerKey
+		;
+
         $.ajax({
             url: url,
             method: 'POST',
             success: function(result) {
                 console.log(result);
-//                 let boolean = check(result);
             }
         });
 	}
