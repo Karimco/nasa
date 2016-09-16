@@ -9,11 +9,11 @@ $(document).ready(function() {
 
 	var url = "https://api.nasa.gov/neo/rest/v1/feed?api_key="+apiKey+"&start_date="+startDate+"&end_date="+endDate;
 
-	// brucewillis(url);
+	brucewillis(url);
 
-	$('.impact').on('click', () => {
-		impact();
-	});
+//	$('.impact').on('click', () => {
+//		impact();
+//	});
 
     //Get les datas asteroid du jour
 	function brucewillis(url) {
@@ -66,15 +66,11 @@ $(document).ready(function() {
     function check(res){
         setInterval(function(){
                 if(res[0].timestamp == moment().format("HH:mm")){
-                    return true;
+                    impact();
                 }
         }, 1000*60);
     }
     
-    //Lance la music
-    function letsgo(){
-        
-    }
 
     //LittleBit
 	function impact() {
@@ -85,12 +81,8 @@ $(document).ready(function() {
             url: url,
             method: 'POST',
             success: function(result) {
-
-            	console.log(result);
-
-                // let boolean = check(result);
-                
-                // if(boolean){ letsgo() }
+                console.log(result);
+//                 let boolean = check(result);
             }
         });
 	}
