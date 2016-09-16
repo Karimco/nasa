@@ -2,18 +2,33 @@
 
 $(document).ready(function() {
 
-	var apiKey = "U31QXBjycdeRrJ0gsnCQpvlaWLpvBBsb2QKCQqUL";
+	/*******************/
+	/*	  Variables    */
+	/*******************/
 
-	var startDate = "2016-09-16";//moment().format("YYYY-MM-DD");
-	var endDate = "2016-09-17";
+	var apiKey = "U31QXBjycdeRrJ0gsnCQpvlaWLpvBBsb2QKCQqUL",
+		startDate = "2016-09-16", //moment().format("YYYY-MM-DD");
+		endDate = "2016-09-17",
+		url = "https://api.nasa.gov/neo/rest/v1/feed?api_key="+apiKey+"&start_date="+startDate+"&end_date="+endDate
+	;
 
-	var url = "https://api.nasa.gov/neo/rest/v1/feed?api_key="+apiKey+"&start_date="+startDate+"&end_date="+endDate;
 
+
+
+
+	/*******************/
+	/*	  Launching    */
+	/*******************/
+
+	// Launch watching of Asteroids
 	brucewillis(url);
 
-	$('.impact').on('click', () => {
-		impact();
-	});
+
+
+
+	/*******************/
+	/*	  Functions    */
+	/*******************/
 
     // Get les datas asteroid du jour
 	function brucewillis(url) {
@@ -30,6 +45,7 @@ $(document).ready(function() {
 
 					let asteroid = result.near_earth_objects[endDate][i];
 
+					// Create our own asteroid object with the formated datas we want
 					let object = {
 						name: asteroid.name,
 						hazardous: "Oui",
@@ -38,12 +54,15 @@ $(document).ready(function() {
 						diameter: Math.round((asteroid.estimated_diameter.meters.estimated_diameter_max + asteroid.estimated_diameter.meters.estimated_diameter_min) /2)
 					}
 
+					// Change hour of one asteroid in order to match with current
 					if(asteroid.name === "(2016 QL44)") {
 						object.timestamp = moment().format("HH:mm");
 					}
 
+					// Convert asterois hazard from boolean to text
 					if(!asteroid.is_potentially_hazardous_asteroid) object.hazardous = "Non";
 
+					// Push of our asteroid objects in asteroid global array
 					asteroids.push(object);
 
 					let element = `
@@ -59,6 +78,7 @@ $(document).ready(function() {
 					$('ul').append(element);
 				}
 
+				// Launch the time watcher of asteroid hour pass and our current hour
 				check(asteroids);
 			}
 		});
@@ -68,7 +88,7 @@ $(document).ready(function() {
     function check(asteroids) {
 
     	console.log(asteroids);
-
+    	
     	for(let elem in asteroids) {
     		if(asteroids[elem].timestamp == moment().format("HH:mm")) {
     			impact(asteroids[elem]);	
@@ -103,4 +123,8 @@ $(document).ready(function() {
             }
         });
 	}
+
+	$('.impact').on('click', () => {
+		impact();
+	});
 });
