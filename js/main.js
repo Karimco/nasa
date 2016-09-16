@@ -15,13 +15,14 @@ $(document).ready(function() {
 
 			console.log(result);
 
-			for(let i in result.near_earth_objects) {
+			for(let i in result.near_earth_objects[startDate]) {
 
-				let asteroid = result.near_earth_objects[i];
+				let asteroid = result.near_earth_objects[startDate][i];
 
 				console.log(asteroid);
+				console.log(asteroid.name);
 
-				let test = asteroid.absolute_magnitude_h;
+				// let test = asteroid.absolute_magnitude_h;
 
 				let element = `
 					<li>
@@ -30,6 +31,8 @@ $(document).ready(function() {
 				`;
 
 				$('ul').append(element);
+
+
 			}
 		}
 	});
