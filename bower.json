@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "jquery": "^2.2.3",
-    "foundation": "^5.5.3"
+    "foundation": "^5.5.3",
+    "moment": "^2.15.0"
   }
 }
