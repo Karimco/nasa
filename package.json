@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "webarranco_starter",
+        "scope": null,
+        "escapedName": "webarranco_starter",
+        "name": "webarranco_starter",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\wamp\\www\\ECV\\m2\\nasa"
+    ]
+  ],
+  "_from": "webarranco_starter@latest",
+  "_id": "webarranco_starter@1.0.8",
+  "_inCache": true,
+  "_location": "/webarranco_starter",
+  "_nodeVersion": "4.4.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/webarranco_starter-1.0.8.tgz_1459946895590_0.7195024110842496"
+  },
+  "_npmUser": {
+    "name": "webarranco",
+    "email": "guillaume.barranco8@hotmail.fr"
+  },
+  "_npmVersion": "2.14.20",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "webarranco_starter",
+    "scope": null,
+    "escapedName": "webarranco_starter",
+    "name": "webarranco_starter",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/webarranco_starter/-/webarranco_starter-1.0.8.tgz",
+  "_shasum": "b03feeacb0776fd0e0433712225c049b8813f40c",
+  "_shrinkwrap": null,
+  "_spec": "webarranco_starter",
+  "_where": "C:\\wamp\\www\\ECV\\m2\\nasa",
+  "author": {
+    "name": "ECV"
+  },
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "gulp-jshint": "^1.12.0",
+    "gulp-scss-lint": "^0.3.8",
+    "gulp-uglify": "^1.5.1",
+    "yargs": "^3.30.0"
+  },
+  "description": "This package provides:\r \t- bower with dependencies : jquery/foundation\r \t- index.html ready with jquery and foundation css charged\r \t- main.js jquery-ready\r \t- gulp with gulpfile for sass, watch",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uncss": "^1.0.4",
+    "gulp-watch": "^4.3.5"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "b03feeacb0776fd0e0433712225c049b8813f40c",
+    "tarball": "https://registry.npmjs.org/webarranco_starter/-/webarranco_starter-1.0.8.tgz"
+  },
+  "gitHead": "f457a6c07b8a13dc2c083198e54e1237d01edef2",
+  "homepage": "",
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "webarranco",
+      "email": "guillaume.barranco8@hotmail.fr"
+    }
+  ],
+  "name": "webarranco_starter",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.8"
+}
