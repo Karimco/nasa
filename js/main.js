@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+	let makerKey = "jBdzjx6A04qjewchH_aRTAnKz_838X8VntQ4qCPay2Z";
+
 	var apiKey = "U31QXBjycdeRrJ0gsnCQpvlaWLpvBBsb2QKCQqUL";
 
 	var startDate = "2016-09-16";
